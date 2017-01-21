@@ -59,11 +59,12 @@ public class PaycheckController {
 	    while ((nextLine = reader.readNext()) != null) {
 	        Paycheck paycheck = new Paycheck(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2], 
 	        		Integer.parseInt(nextLine[3]), Float.parseFloat(nextLine[4]), Float.parseFloat(nextLine[5]));
-	        paycheckList.add(paycheck);
+	        this.paycheckList.add(paycheck);
 	    }
 	}
 	
 	public void save() throws IOException{
+		
 		CSVWriter writer = new CSVWriter(new FileWriter(this.fileName));
 		//List<String> lines = new ArrayList<String>();
 		for (Paycheck object: this.paycheckList){
@@ -83,6 +84,7 @@ public class PaycheckController {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Hello novi dokument");
+		
 	}
 	
 }
