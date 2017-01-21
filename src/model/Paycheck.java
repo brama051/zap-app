@@ -7,7 +7,7 @@ package model;
  * @author brama
  *
  */
-public class Placa {
+public class Paycheck {
 	private int id;
 	private String firstName;
 	private String lastName;
