@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
@@ -14,7 +15,7 @@ public class PaycheckController {
 	public ArrayList<Paycheck> paycheckList;
 	private String fileName;
 	
-	PaycheckController(String fileName){
+	public PaycheckController(String fileName){
 		this.fileName = fileName;
 		this.paycheckList = new ArrayList<Paycheck>();
 	}
@@ -25,6 +26,12 @@ public class PaycheckController {
 	
 	public void createPaycheck(Paycheck paycheck){
 		this.paycheckList.add(paycheck);
+		try {
+			this.save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Paycheck readPaycheck(int id){
@@ -45,11 +52,32 @@ public class PaycheckController {
 		    }
 		    i++;
 		}
+		try {
+			this.save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void deletePaycheck(int id){
 		for (Paycheck object: this.paycheckList)
 		    if (object.getId() == id) this.paycheckList.remove(object);
+		try {
+			this.save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public int getNextID(){
+		int id = 0;
+		System.out.println(this.paycheckList.size());
+		for (Paycheck p : this.paycheckList) {
+			id = p.getId() + 1;
+		}
+		return id;
 	}
 	
 	public void load() throws IOException{
@@ -65,7 +93,7 @@ public class PaycheckController {
 	
 	public void save() throws IOException{
 		
-		CSVWriter writer = new CSVWriter(new FileWriter(this.fileName));
+		CSVWriter writer = new CSVWriter(new FileWriter(this.fileName, false));
 		//List<String> lines = new ArrayList<String>();
 		for (Paycheck object: this.paycheckList){
 			String[] entries = new String[7];
@@ -83,7 +111,25 @@ public class PaycheckController {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello novi dokument");
+		/*System.out.println("Hello novi dokument");
+		PaycheckController pc = new PaycheckController("file.csv");
+		/*pc.createPaycheck(new Paycheck(0,"Edi", "Ibriks", 1, 123, 123));
+		pc.createPaycheck(new Paycheck(1,"Edi", "Ibriks2", 1, 123, 123));
+		pc.createPaycheck(new Paycheck(2,"Edi", "Ibriks3", 1, 123, 123));*/
+		/*try {
+			//pc.save();
+			pc.load();
+			//Paycheck p = pc.readPaycheck(0);
+			for (Paycheck p : pc.paycheckList) {
+				System.out.println(p.getLastName());
+			}
+			
+			pc.getNextID();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
 	}
 	

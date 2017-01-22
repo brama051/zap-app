@@ -1,6 +1,8 @@
 package view;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -19,16 +21,15 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import controller.PaycheckController;
+import model.Paycheck;
 
 public class ListAllPaychecksView {
 
 	private Label label;
-    private final String data[][] = { { "Ferarri", "33333" },
-            { "Skoda", "22000" }, { "Volvo", "18000" }, { "Mazda", "15000" },
-            { "Mercedes", "38000" } };
+	private PaycheckController paycheckController;
 
     public ListAllPaychecksView(Display display, PaycheckController paycheckController) {
-
+    	this.paycheckController = paycheckController;
         initUI(display);
     }
 
@@ -41,7 +42,7 @@ public class ListAllPaychecksView {
         table.setHeaderVisible(true);
          table.setLinesVisible(true);
 
-        String[] titles = { "Car", "Price" };
+        String[] titles = { "ID", "Ime", "Prezime", "Mjesec", "Sati", "kn/hr", "Total" };
 
         for (int i = 0; i < titles.length; i++) {
             TableColumn column = new TableColumn(table, SWT.NULL);
@@ -49,25 +50,38 @@ public class ListAllPaychecksView {
             column.setWidth(130);
         }
 
-        for (int i = 0; i < data.length; i++) {
-
-            TableItem item = new TableItem(table, SWT.NULL);
-            item.setText(0, data[i][0]);
-            item.setText(1, data[i][1]);
-        }
+        int rowNumber = 0;
+        for (Paycheck p : this.paycheckController.paycheckList) {
+        	TableItem item = new TableItem(table, SWT.NULL);
+            
+            item.setText(0, Integer.toString(p.getId()));
+            item.setText(1, p.getFirstName());
+            item.setText(2, p.getLastName());
+            item.setText(3, Integer.toString(p.getMonth()));
+            item.setText(4, Float.toString(p.getTotalHours()));
+            item.setText(5, Float.toString(p.getPricePerHour()));
+            item.setText(6, Float.toString(p.getTotal()));
+        	
+        	rowNumber ++;
+		}
+        
+        for (Paycheck p : this.paycheckController.paycheckList) {
+			System.out.println(p.getLastName());
+		}
 
         label = new Label(shell, SWT.NONE);
 
         table.addListener(SWT.Selection, event -> onTableItemSelected(table));
         GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-        gd.widthHint = 360;
-        gd.heightHint = 300;
+        gd.widthHint = 800;
+        gd.heightHint = 600;
         table.setLayoutData(gd);
 
         label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         shell.setText("Table widget");
         shell.pack();
+        this.centerWindow(shell);
         shell.open();
 
         while (!shell.isDisposed()) {
@@ -86,11 +100,15 @@ public class ListAllPaychecksView {
     }
 
 
-    /*@SuppressWarnings("unused")
-    public static void main(String[] args) {
-        
-        Display display = new Display();
-        GridLayoutEx ex = new GridLayoutEx(display);
-        display.dispose();
-    }*/
+    private void centerWindow(Shell shell) {
+
+        Rectangle bds = shell.getDisplay().getBounds();
+
+        Point p = shell.getSize();
+
+        int nLeft = (bds.width - p.x) / 2;
+        int nTop = (bds.height - p.y) / 2;
+
+        shell.setBounds(nLeft, nTop, p.x, p.y);
+    }
 }
