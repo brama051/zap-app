@@ -4,6 +4,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -95,7 +97,7 @@ public class CreateNewView {
         btnSave.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         btnSave.addSelectionListener(this.setSaveListener());
 
-        
+        this.centerWindow(shell);
         //shell.pack();
         shell.open();
         
@@ -132,6 +134,18 @@ public class CreateNewView {
             	shell.close();
             }
     	};
+    }
+    
+    private void centerWindow(Shell shell) {
+
+        Rectangle bds = shell.getDisplay().getBounds();
+
+        Point p = shell.getSize();
+
+        int nLeft = (bds.width - p.x) / 2;
+        int nTop = (bds.height - p.y) / 2;
+
+        shell.setBounds(nLeft, nTop, p.x, p.y);
     }
     
 }
