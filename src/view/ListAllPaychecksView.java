@@ -68,7 +68,7 @@ public class ListAllPaychecksView {
 
         label = new Label(shell, SWT.NONE);
 
-        table.addListener(SWT.Selection, event -> onTableItemSelected(table));
+        //table.addListener(SWT.Selection, event -> onTableItemSelected(table));
         GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
         gd.widthHint = 910;
         gd.heightHint = 600;

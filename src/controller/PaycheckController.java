@@ -61,14 +61,22 @@ public class PaycheckController {
 	}
 	
 	public void deletePaycheck(int id){
-		for (Paycheck object: this.paycheckList)
-		    if (object.getId() == id) this.paycheckList.remove(object);
-		try {
-			this.save();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		int pCount = 0;
+		for (Paycheck object: this.paycheckList){
+			System.out.println(object.getId() + " : " + id);
+		    if (object.getId() == id) { 
+		    	this.paycheckList.remove(pCount);
+		    	try {
+					this.save();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    	return;
+		    }
+		    pCount ++;
 		}
+		
 	}
 	
 	public int getNextID(){
