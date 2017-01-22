@@ -65,15 +65,12 @@ public class ListAllPaychecksView {
         	rowNumber ++;
 		}
         
-        for (Paycheck p : this.paycheckController.paycheckList) {
-			System.out.println(p.getLastName());
-		}
 
         label = new Label(shell, SWT.NONE);
 
         table.addListener(SWT.Selection, event -> onTableItemSelected(table));
         GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-        gd.widthHint = 800;
+        gd.widthHint = 910;
         gd.heightHint = 600;
         table.setLayoutData(gd);
 

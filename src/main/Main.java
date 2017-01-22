@@ -20,7 +20,6 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Hello, brama");
 		Display display = new Display();
         MainMenu mainMenu = new MainMenu(display, paycheckController);
         System.out.println("Created new window");
