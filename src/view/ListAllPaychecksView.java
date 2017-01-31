@@ -27,12 +27,18 @@ public class ListAllPaychecksView {
 
 	private Label label;
 	private PaycheckController paycheckController;
-
+	
+	/**
+	 * The class constructor
+	 */
     public ListAllPaychecksView(Display display, PaycheckController paycheckController) {
     	this.paycheckController = paycheckController;
         initUI(display);
     }
 
+    /**
+     * Interface generating method
+     */
     private void initUI(Display display) {
 
         Shell shell = new Shell(display, SWT.SHELL_TRIM | SWT.CENTER);
@@ -87,6 +93,9 @@ public class ListAllPaychecksView {
         }
     }
 
+    /**
+     * Listener for the table item selected event
+     */
     private void onTableItemSelected(Table table) {
         
         TableItem[] sel = table.getSelection();
@@ -96,7 +105,9 @@ public class ListAllPaychecksView {
         label.setText(msg);
     }
 
-
+    /**
+	 * Method for centering the generated window
+	 */
     private void centerWindow(Shell shell) {
 
         Rectangle bds = shell.getDisplay().getBounds();

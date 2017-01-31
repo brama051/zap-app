@@ -34,11 +34,17 @@ public class CreateNewView {
 	private Text pricePerHour;
 	private Shell shell;
 	
+	/**
+	 * The class constructor
+	 */
     public CreateNewView(Display display, PaycheckController paycheckController) {
         this.paycheckController = paycheckController;
     	initUI(display);
     }
     
+    /**
+     * Interface generating method
+     */
     private void initUI(Display display) {
         
     	shell = new Shell(display, SWT.SHELL_TRIM | SWT.CENTER);
@@ -107,6 +113,9 @@ public class CreateNewView {
         }
     }
     
+    /**
+     * Listener method for the cancel button click event
+     */
     private SelectionAdapter setCancelListener(){
     	return new SelectionAdapter() {
             @Override
@@ -116,6 +125,9 @@ public class CreateNewView {
     	};
     }
     
+    /**
+     * Listener method for the save button click event
+     */
     private SelectionAdapter setSaveListener(){
     	return new SelectionAdapter() {
             @Override
@@ -136,6 +148,9 @@ public class CreateNewView {
     	};
     }
     
+    /**
+	 * Method for centering the generated window
+	 */
     private void centerWindow(Shell shell) {
 
         Rectangle bds = shell.getDisplay().getBounds();

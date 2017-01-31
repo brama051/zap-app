@@ -18,7 +18,10 @@ import org.eclipse.swt.layout.GridLayout;
 public class MainMenu {
 	public Shell shell; //window
 	public PaycheckController paycheckController;
-	//build interface
+	
+	/**
+	 * The class constructor
+	 */
 	public MainMenu(Display display, PaycheckController paycheckController) {
 	     
 	    this.paycheckController = paycheckController;
@@ -27,6 +30,9 @@ public class MainMenu {
         
     }
 	
+	/**
+     * Interface generating method
+     */
 	private void initUI(Display display){
 		this.shell = new Shell(display, SWT.SHELL_TRIM | SWT.CENTER);
         this.shell.setText("Glavni izbornik");
@@ -82,6 +88,9 @@ public class MainMenu {
         }
 	}
 
+	/**
+	 * Method for centering the generated window
+	 */
     private void centerWindow(Shell shell) {
 
         Rectangle bds = shell.getDisplay().getBounds();
@@ -94,6 +103,9 @@ public class MainMenu {
         shell.setBounds(nLeft, nTop, p.x, p.y);
     }
     
+    /**
+     * Listener method for the quit button click event
+     */
     private SelectionAdapter setQuitListener(){
     	return new SelectionAdapter() {
             @Override
@@ -104,7 +116,9 @@ public class MainMenu {
     	};
     }
     
-    
+    /**
+     * Listener method for the open list button click event
+     */
     private SelectionAdapter openListListener(){
     	
     	return new SelectionAdapter() {
@@ -116,6 +130,9 @@ public class MainMenu {
     	};
     }
     
+    /**
+     * Listener method for the create new button click event
+     */
     private SelectionAdapter createNewListener(){
     	
     	return new SelectionAdapter() {
@@ -127,6 +144,9 @@ public class MainMenu {
     	};
     }
     
+    /**
+     * Listener method for the edit button click event
+     */
     private SelectionAdapter editListener(){
     	
     	return new SelectionAdapter() {
@@ -138,6 +158,9 @@ public class MainMenu {
     	};
     }
     
+    /**
+     * Listener method for the delete button click event
+     */
     private SelectionAdapter deleteListener(){
     	
     	return new SelectionAdapter() {

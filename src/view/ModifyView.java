@@ -43,6 +43,9 @@ public class ModifyView {
     	initUI(display);
     }
     
+    /**
+     * Interface generating method
+     */
     private void initUI(Display display) {
         
     	shell = new Shell(display, SWT.SHELL_TRIM | SWT.CENTER);
@@ -125,6 +128,9 @@ public class ModifyView {
         }
     }
     
+    /**
+     * Listener method for the cancel button click event
+     */
     private SelectionAdapter setCancelListener(){
     	return new SelectionAdapter() {
             @Override
@@ -134,6 +140,9 @@ public class ModifyView {
     	};
     }
     
+    /**
+     * Listener method for the save button click event
+     */
     private SelectionAdapter setSaveListener(){
     	return new SelectionAdapter() {
             @Override
@@ -154,6 +163,9 @@ public class ModifyView {
     	};
     }
     
+    /**
+     * Listener method for the dropdown list selected event 
+     */
     private SelectionAdapter comboSelectedListener(){
     	return new SelectionAdapter() {
             @Override
@@ -175,6 +187,9 @@ public class ModifyView {
     	};
     }
     
+    /**
+	 * Method for centering the generated window
+	 */
     private void centerWindow(Shell shell) {
 
         Rectangle bds = shell.getDisplay().getBounds();

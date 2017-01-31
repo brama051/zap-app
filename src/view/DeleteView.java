@@ -38,12 +38,18 @@ public class DeleteView {
 	private Combo comboDropDown;
 	private Shell shell;
 	
+	/**
+	 * The class constructor
+	 */
     public DeleteView(Display display, PaycheckController paycheckController) {
         this.paycheckController = paycheckController;
     	initUI(display);
     	pID = -1;
     }
     
+    /**
+     * Interface generating method
+     */
     private void initUI(Display display) {
         
     	shell = new Shell(display, SWT.SHELL_TRIM | SWT.CENTER);
@@ -126,6 +132,9 @@ public class DeleteView {
         }
     }
     
+    /**
+     * Listener method for the cancel button click event
+     */
     private SelectionAdapter setCancelListener(){
     	return new SelectionAdapter() {
             @Override
@@ -135,6 +144,9 @@ public class DeleteView {
     	};
     }
     
+    /**
+     * Listener method for the delete button click event
+     */
     private SelectionAdapter setDeleteListener(){
     	return new SelectionAdapter() {
             @Override
@@ -146,6 +158,9 @@ public class DeleteView {
     	};
     }
     
+    /**
+     * Listener method for the dropdown list selected event
+     */
     private SelectionAdapter comboSelectedListener(){
     	return new SelectionAdapter() {
             @Override
@@ -167,6 +182,9 @@ public class DeleteView {
     	};
     }
     
+    /**
+	 * Method for centering the generated window
+	 */
     private void centerWindow(Shell shell) {
 
         Rectangle bds = shell.getDisplay().getBounds();
