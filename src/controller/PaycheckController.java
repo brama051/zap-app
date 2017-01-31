@@ -11,19 +11,33 @@ import com.opencsv.CSVWriter;
 
 import model.Paycheck;
 
+/**
+ * 
+ * Class mainly for manipulating it's paycheckList attribute
+ *
+ */
 public class PaycheckController {
 	public ArrayList<Paycheck> paycheckList;
 	private String fileName;
 	
+	/**
+	 * The Class contructor
+	 */
 	public PaycheckController(String fileName){
 		this.fileName = fileName;
 		this.paycheckList = new ArrayList<Paycheck>();
 	}
 	
+	/**
+	 * Getter method for retrieving last index of the array
+	 */
 	public int lastIndex(){
 		return this.paycheckList.size();
 	}
 	
+	/**
+	 * Method that adds new item to the paycheckList attribute
+	 */
 	public void createPaycheck(Paycheck paycheck){
 		this.paycheckList.add(paycheck);
 		try {
@@ -34,12 +48,18 @@ public class PaycheckController {
 		}
 	}
 	
+	/**
+	 * Getter method that returns element by it's index in the paycheckList attribute
+	 */
 	public Paycheck readPaycheck(int id){
 		for (Paycheck object: this.paycheckList)
 		    if (object.getId() == id) return object;
 		return null;
 	}
 	
+	/**
+	 * Setter method that changes values of an existing paycheckList element
+	 */
 	public void updatePaycheck(Paycheck paycheck){
 		int i = 0;
 		for (Paycheck object: this.paycheckList){
@@ -60,6 +80,9 @@ public class PaycheckController {
 		}
 	}
 	
+	/**
+	 * Method that deletes an element from the paycheckList attribute by index
+	 */
 	public void deletePaycheck(int id){
 		int pCount = 0;
 		for (Paycheck object: this.paycheckList){
@@ -79,6 +102,9 @@ public class PaycheckController {
 		
 	}
 	
+	/**
+	 * Method thet returns next available "primary key" identifier in the paycheckList attribute
+	 */
 	public int getNextID(){
 		int id = 0;
 		System.out.println(this.paycheckList.size());
@@ -88,6 +114,9 @@ public class PaycheckController {
 		return id;
 	}
 	
+	/**
+	 * Setter method that loads data from a file into a paycheckList attribute
+	 */
 	public void load() throws IOException{
 		
 		CSVReader reader = new CSVReader(new FileReader(this.fileName));
@@ -99,6 +128,9 @@ public class PaycheckController {
 	    }
 	}
 	
+	/**
+	 * A method that loads current state of a paycheckList attribute into a CSV file
+	 */
 	public void save() throws IOException{
 		
 		CSVWriter writer = new CSVWriter(new FileWriter(this.fileName, false));
@@ -115,30 +147,6 @@ public class PaycheckController {
 			writer.writeNext(entries);	
 		}
 		writer.close();
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		/*System.out.println("Hello novi dokument");
-		PaycheckController pc = new PaycheckController("file.csv");
-		/*pc.createPaycheck(new Paycheck(0,"Edi", "Ibriks", 1, 123, 123));
-		pc.createPaycheck(new Paycheck(1,"Edi", "Ibriks2", 1, 123, 123));
-		pc.createPaycheck(new Paycheck(2,"Edi", "Ibriks3", 1, 123, 123));*/
-		/*try {
-			//pc.save();
-			pc.load();
-			//Paycheck p = pc.readPaycheck(0);
-			for (Paycheck p : pc.paycheckList) {
-				System.out.println(p.getLastName());
-			}
-			
-			pc.getNextID();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
 	}
 	
 }
